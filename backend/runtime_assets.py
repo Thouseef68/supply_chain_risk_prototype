@@ -13,9 +13,14 @@ DATA_DIR.mkdir(parents=True, exist_ok=True)
 
 
 ASSETS = {
-    "dataco_catboost_features_model.joblib": MODEL_DIR / "dataco_catboost_features_model.joblib",
-    "disruption_catboost_model.joblib": MODEL_DIR / "disruption_catboost_model.joblib",
-    "DataCoSupplyChainDataset.csv": DATA_DIR / "DataCoSupplyChainDataset.csv",
+    "dataco_catboost_features_model.joblib":
+        MODEL_DIR / "dataco_catboost_features_model.joblib",
+
+    "disruption_catboost_model.joblib":
+        MODEL_DIR / "disruption_catboost_model.joblib",
+
+    "DataCoSupplyChainDataset.csv":
+        DATA_DIR / "DataCoSupplyChainDataset.csv",
 }
 
 
@@ -40,7 +45,6 @@ def download_file(url: str, destination: Path):
     except Exception:
         if temporary.exists():
             temporary.unlink()
-
         raise
 
 
@@ -49,21 +53,19 @@ def ensure_runtime_assets():
 
     if not base_url:
         print("[assets] MODEL_RELEASE_BASE_URL not configured.")
-        print("[assets] Assuming assets already exist locally.")
+        print("[assets] Using local runtime files.")
         return
 
     base_url = base_url.rstrip("/")
 
     for filename, destination in ASSETS.items():
+
         if destination.exists() and destination.stat().st_size > 0:
             print(f"[assets] OK: {filename}")
             continue
 
         url = f"{base_url}/{filename}"
 
-        download_file(
-            url,
-            destination,
-        )
+        download_file(url, destination)
 
     print("[assets] All runtime assets are ready.")
