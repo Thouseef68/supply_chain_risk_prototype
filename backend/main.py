@@ -1,3 +1,7 @@
+from runtime_assets import ensure_runtime_assets
+
+ensure_runtime_assets()
+
 import os
 import json
 import pandas as pd
@@ -77,12 +81,9 @@ init_database()
 app.add_middleware(
     CORSMiddleware,
 
-    allow_origins=[
-        "http://localhost:5173",
-        "http://127.0.0.1:5173"
-    ],
+    allow_origins=["*"],
 
-    allow_credentials=True,
+    allow_credentials=False,
 
     allow_methods=["*"],
 
