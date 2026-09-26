@@ -1,0 +1,53 @@
+{
+  "model_name": "Disruption CatBoost",
+  "target": "Disruption_Occurred",
+  "features": [
+    "Origin_Port",
+    "Destination_Port",
+    "Transport_Mode",
+    "Product_Category",
+    "Distance_km",
+    "Weight_MT",
+    "Fuel_Price_Index",
+    "Geopolitical_Risk_Score",
+    "Weather_Condition",
+    "Carrier_Reliability_Score",
+    "Lead_Time_Days",
+    "date_year",
+    "date_month",
+    "date_day",
+    "date_dayofweek",
+    "date_week"
+  ],
+  "categorical_features": [
+    "Origin_Port",
+    "Destination_Port",
+    "Transport_Mode",
+    "Product_Category",
+    "Weather_Condition"
+  ],
+  "metrics": {
+    "accuracy": 0.734,
+    "precision": 0.785831960461285,
+    "recall": 0.7781402936378466,
+    "f1": 0.7819672131147541,
+    "roc_auc": 0.8290822025789211,
+    "test_size": 1000,
+    "best_iteration": 254
+  },
+  "confusion_matrix": [
+    [
+      257,
+      130
+    ],
+    [
+      136,
+      477
+    ]
+  ],
+  "training_rows": 4000,
+  "test_rows": 1000,
+  "positive_rate": 0.6126,
+  "source_file": "supply_chain_risk_results.csv",
+  "note": "Prediction/Risk output columns were excluded from training; Shipment_ID and raw Date were excluded after extracting calendar features."
+}
